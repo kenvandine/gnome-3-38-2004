@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
@@ -6,14 +6,14 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get install --yes curl sudo jq squashfs-tools tzdata && \
   curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core' | jq '.download_url' -r) --output core.snap && \
   mkdir -p /snap/core && unsquashfs -d /snap/core/current core.snap && rm core.snap && \
-  curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core18' | jq '.download_url' -r) --output core18.snap && \
-  mkdir -p /snap/core18 && unsquashfs -d /snap/core18/current core18.snap && rm core18.snap && \
+  curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core20' | jq '.download_url' -r) --output core20.snap && \
+  mkdir -p /snap/core20 && unsquashfs -d /snap/core20/current core20.snap && rm core20.snap && \
   curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/snapcraft?channel=candidate' | jq '.download_url' -r) --output snapcraft.snap && \
   mkdir -p /snap/snapcraft && unsquashfs -d /snap/snapcraft/current snapcraft.snap && rm snapcraft.snap && \
   curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/gtk-common-themes' | jq '.download_url' -r) --output gtk-common-themes.snap && \
   mkdir -p /snap/gtk-common-themes && unsquashfs -d /snap/gtk-common-themes/current gtk-common-themes.snap && rm gtk-common-themes.snap && \
-  curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/gnome-3-28-1804' | jq '.download_url' -r) --output gnome-3-28-1804.snap && \
-  mkdir -p /snap/gnome-3-28-1804 && unsquashfs -d /snap/gnome-3-28-1804/current gnome-3-28-1804.snap && rm gnome-3-28-1804.snap && \
+  curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/gnome-3-38-2004' | jq '.download_url' -r) --output gnome-3-38-2004.snap && \
+  mkdir -p /snap/gnome-3-38-2004 && unsquashfs -d /snap/gnome-3-38-2004/current gnome-3-38-2004.snap && rm gnome-3-38-2004.snap && \
   apt remove --yes --purge curl jq squashfs-tools && \
   apt-get autoclean --yes && \
   apt-get clean --yes
